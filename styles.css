@@ -1,0 +1,90 @@
+:root {
+    --bg: #0f172a;
+    --surface: #111827;
+    --muted: #94a3b8;
+    --text: #e2e8f0;
+    --primary: #2563eb;
+    --primary-600: #1d4ed8;
+    --card: #0b1220;
+    --border: #1f2937;
+    --success: #10b981;
+    --danger: #ef4444;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    line-height: 1.5;
+}
+
+.container { max-width: 1000px; margin: 0 auto; padding: 0 16px; }
+.small { color: var(--muted); font-size: 0.9rem; }
+.hidden { display: none !important; }
+.row { display: flex; gap: 12px; align-items: center; }
+
+/* Navbar */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(2,6,23,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+}
+.nav-content { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.brand { font-weight: 700; letter-spacing: 0.3px; }
+.nav-links { list-style: none; display: flex; gap: 18px; padding: 0; margin: 0; }
+.nav-links a, .linklike { color: var(--text); text-decoration: none; opacity: 0.9; }
+.nav-links a:hover, .linklike:hover { opacity: 1; color: white; }
+.linklike { background: none; border: none; cursor: pointer; font: inherit; }
+
+/* Layout */
+main.container { padding: 24px 16px 64px; }
+.footer { border-top: 1px solid var(--border); padding: 16px 0; background: rgba(2,6,23,0.6); }
+
+/* Cards */
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+.about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 16px; }
+
+/* Forms */
+.form { display: grid; gap: 12px; max-width: 500px; }
+label { display: grid; gap: 6px; font-size: 0.95rem; }
+input, textarea, select { width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: var(--text); }
+input::file-selector-button { background: var(--surface); color: var(--text); border: 1px solid var(--border); padding: 8px 10px; border-radius: 8px; margin-right: 10px; cursor: pointer; }
+textarea { resize: vertical; }
+.btn { padding: 10px 14px; border-radius: 10px; background: var(--surface); color: var(--text); border: 1px solid var(--border); cursor: pointer; }
+.btn.primary { background: var(--primary); border-color: var(--primary-600); }
+.btn.primary:hover { background: var(--primary-600); }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.hint { color: var(--muted); font-size: 0.9rem; }
+
+/* Events */
+.events-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.profile { display: flex; align-items: center; gap: 12px; }
+.avatar { width: 72px; height: 72px; border-radius: 50%; background: #0a0f1a center/cover no-repeat; border: 1px solid var(--border); position: relative; cursor: pointer; display: grid; place-items: center; color: var(--muted); font-size: 0.8rem; }
+.avatar::after { content: 'Picture'; opacity: 0.9; }
+.username { font-weight: 600; }
+.feed { display: grid; gap: 12px; }
+.post { display: grid; gap: 8px; }
+.post-header { display: flex; align-items: center; gap: 10px; }
+.post-username { font-weight: 600; }
+.post-time { color: var(--muted); font-size: 0.85rem; }
+.post-media { border-radius: 10px; max-height: 420px; width: 100%; object-fit: contain; background: #0a0f1a; border: 1px solid var(--border); }
+.file-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+
+/* Categories Bar */
+.categories { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.cat-btn { padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; }
+.cat-btn.active { background: var(--primary); border-color: var(--primary-600); }
+.empty-hint { color: var(--muted); margin: 8px 0 0; }
+
+@media (max-width: 520px) {
+    .nav-links { gap: 12px; }
+    .events-header { flex-direction: column; align-items: stretch; gap: 12px; }
+}
+
+

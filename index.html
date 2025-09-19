@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeetPoint</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-content">
+            <div class="brand">MeetPoint</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#/about" data-link>About Us</a></li>
+                    <li id="nav-events" class="hidden"><a href="#/events" data-link>Events</a></li>
+                    <li id="nav-login"><a href="#/login" data-link>Login</a></li>
+                    <li id="nav-logout" class="hidden"><button id="logoutBtn" class="linklike">Logout</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container" id="app">
+        <!-- About Section -->
+        <section id="view-about" class="view">
+            <h1>Welcome to MeetPoint</h1>
+            <p>
+                MeetPoint is a space for socializing, refreshing, and showcasing opportunities from
+                different sites and users. Discover jobs, education resources, promotions, and more—
+                shared by the community, for the community.
+            </p>
+            <div class="about-grid">
+                <div class="card">
+                    <h3>Connect</h3>
+                    <p>Meet and interact with people who share your interests and goals.</p>
+                </div>
+                <div class="card">
+                    <h3>Discover</h3>
+                    <p>Find jobs, scholarships, trainings, and opportunities curated by users.</p>
+                </div>
+                <div class="card">
+                    <h3>Share</h3>
+                    <p>Post insights, promotions, images, or videos to inspire and educate others.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Login Section -->
+        <section id="view-login" class="view hidden">
+            <h2>Login</h2>
+            <form id="loginForm" class="form">
+                <label>
+                    Username
+                    <input type="text" id="loginUsername" required autocomplete="username">
+                </label>
+                <label>
+                    Password
+                    <input type="password" id="loginPassword" required autocomplete="current-password">
+                </label>
+                <button type="submit" class="btn primary">Login</button>
+            </form>
+            <div class="auth-links">
+                <a href="#/register" data-link>New here? Register</a>
+                <a href="#/forgot" data-link>Forgot password?</a>
+            </div>
+        </section>
+
+        <!-- Register Section -->
+        <section id="view-register" class="view hidden">
+            <h2>Create your account</h2>
+            <form id="registerForm" class="form">
+                <label>
+                    Full name
+                    <input type="text" id="regFullName" required>
+                </label>
+                <label>
+                    Email
+                    <input type="email" id="regEmail" required autocomplete="email">
+                </label>
+                <label>
+                    Username
+                    <input type="text" id="regUsername" required autocomplete="username">
+                </label>
+                <label>
+                    Password
+                    <input type="password" id="regPassword" required autocomplete="new-password">
+                </label>
+                <label>
+                    Confirm password
+                    <input type="password" id="regPassword2" required autocomplete="new-password">
+                </label>
+                <button type="submit" class="btn primary">Register</button>
+                <button type="button" class="btn" id="regCancelBtn">Cancel</button>
+            </form>
+        </section>
+
+        <!-- Forgot Password Section -->
+        <section id="view-forgot" class="view hidden">
+            <h2>Reset your password</h2>
+            <form id="forgotForm" class="form">
+                <label>
+                    Username
+                    <input type="text" id="fpUsername" required autocomplete="username">
+                </label>
+                <label>
+                    Registered email
+                    <input type="email" id="fpEmail" required autocomplete="email">
+                </label>
+                <button type="submit" class="btn primary">Send reset</button>
+                <button type="button" class="btn" id="fpCancelBtn">Cancel</button>
+            </form>
+            <p class="hint">We'll generate a new password and send it to your email.</p>
+        </section>
+
+        <!-- Events Section (Requires login) -->
+        <section id="view-events" class="view hidden">
+            <div class="events-header">
+                <div class="profile">
+                    <div class="avatar" id="profileAvatar" title="Click to upload"></div>
+                    <div>
+                        <div class="username" id="profileUsername"></div>
+                        <input type="file" id="avatarInput" accept="image/*" class="hidden">
+                    </div>
+                </div>
+                <button id="newPostToggle" class="btn">New Post</button>
+            </div>
+
+            <div id="categoriesBar" class="categories card">
+                <button class="cat-btn" data-cat="Education">Education</button>
+                <button class="cat-btn" data-cat="Jobs & Careers">Jobs & Careers</button>
+                <button class="cat-btn" data-cat="Promotions & Business">Promotions & Business</button>
+                <button class="cat-btn" data-cat="Community & Social">Community & Social</button>
+            </div>
+
+            <div id="newPostPanel" class="card hidden">
+                <form id="postForm" class="form">
+                    <label>
+                        Message
+                        <textarea id="postText" rows="3" placeholder="Share an update, opportunity, or inspiration..."></textarea>
+                    </label>
+                    <label>
+                        Main category
+                        <select id="postCategory" required>
+                            <option value="" disabled selected>Select a category</option>
+                            <option>Education</option>
+                            <option>Jobs & Careers</option>
+                            <option>Promotions & Business</option>
+                            <option>Community & Social</option>
+                        </select>
+                    </label>
+                    <label>
+                        Sub-category (optional)
+                        <input type="text" id="postSubCategory" placeholder="e.g., Scholarships, Internships, Sales, Volunteering">
+                    </label>
+                    <label>
+                        Tags (optional)
+                        <input type="text" id="postTags" placeholder="Comma separated, e.g., remote, kenya, beginner">
+                    </label>
+                    <label class="file-row">
+                        <span>Attach image or video (optional)</span>
+                        <input type="file" id="postMedia" accept="image/*,video/*">
+                    </label>
+                    <div class="row">
+                        <button type="submit" class="btn primary">Post</button>
+                        <button type="button" class="btn" id="postCancelBtn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="feed" class="feed"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container small">© <span id="year"></span> MeetPoint</div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+<noscript>Please enable JavaScript to use MeetPoint.</noscript>
+</html>
+
+
