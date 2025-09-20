@@ -14,6 +14,8 @@
                 <ul class="nav-links">
                     <li><a href="#/about" data-link>About Us</a></li>
                     <li id="nav-events" class="hidden"><a href="#/events" data-link>Events</a></li>
+                    <li id="nav-feedback" class="hidden"><a href="#/feedback" data-link>Feedback</a></li>
+                    <li id="nav-admin" class="hidden"><a href="#/admin" data-link>Admin</a></li>
                     <li id="nav-login"><a href="#/login" data-link>Login</a></li>
                     <li id="nav-logout" class="hidden"><button id="logoutBtn" class="linklike">Logout</button></li>
                 </ul>
@@ -42,6 +44,48 @@
                 <div class="card">
                     <h3>Share</h3>
                     <p>Post insights, promotions, images, or videos to inspire and educate others.</p>
+                </div>
+            </div>
+            
+            <div class="guide-section">
+                <h2>How to Get Started</h2>
+                <div class="guide-steps">
+                    <div class="step">
+                        <h3>1. Register & Login</h3>
+                        <p>Create your account by clicking "Login" in the top navigation, then "New here? Register". Fill in your details and start connecting with the community.</p>
+                    </div>
+                    <div class="step">
+                        <h3>2. Upload Profile Picture</h3>
+                        <p>Click on the circular profile area in the Events section to upload your profile picture. This helps others recognize you in the community.</p>
+                    </div>
+                    <div class="step">
+                        <h3>3. Browse Categories</h3>
+                        <p>Select from four main categories: Education, Jobs & Careers, Promotions & Business, or Community & Social to view relevant posts.</p>
+                    </div>
+                    <div class="step">
+                        <h3>4. Create Posts</h3>
+                        <p>Click "New Post" to share opportunities. Select a main category, add optional sub-category and tags. Include social media links in tags (e.g., "LinkedIn: your-profile") for private contact.</p>
+                    </div>
+                    <div class="step">
+                        <h3>5. Stay Connected</h3>
+                        <p>You'll receive notifications when others post in your selected category. Your posts appear on the right, others' posts on the left for easy identification.</p>
+                    </div>
+                    <div class="step">
+                        <h3>6. Share Feedback</h3>
+                        <p>Help us improve MeetPoint by sharing your thoughts, suggestions, and ideas through the Feedback section. Your input helps us enhance the platform for everyone.</p>
+                    </div>
+                </div>
+                
+                <div class="tips-section">
+                    <h3>💡 Pro Tips</h3>
+                    <ul>
+                        <li><strong>Social Media Sharing:</strong> Add your social media links in the tags field (e.g., "Instagram: @username, LinkedIn: profile-url")</li>
+                        <li><strong>Category Selection:</strong> Choose the most relevant category for better visibility</li>
+                        <li><strong>Sub-categories:</strong> Use specific sub-categories like "Scholarships", "Remote Jobs", "Local Events"</li>
+                        <li><strong>Tags:</strong> Use descriptive tags to help others find your content</li>
+                        <li><strong>Media:</strong> Attach images or videos to make your posts more engaging</li>
+                        <li><strong>Feedback:</strong> Use the Feedback section to suggest improvements, report issues, or share ideas for new features</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -168,7 +212,135 @@
                 </form>
             </div>
 
-            <div id="feed" class="feed"></div>
+            <div id="feed" class="feed">
+                <div class="feed-columns">
+                    <div class="feed-column" id="othersPosts">
+                        <div id="othersFeed"></div>
+                    </div>
+                    <div class="feed-column" id="myPosts">
+                        <div id="myFeed"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Notification Container -->
+            <div id="notifications" class="notifications"></div>
+        </section>
+
+        <!-- Feedback Section (Requires login) -->
+        <section id="view-feedback" class="view hidden">
+            <div class="feedback-header">
+                <div class="profile">
+                    <div class="avatar" id="feedbackAvatar"></div>
+                    <div>
+                        <div class="username" id="feedbackUsername"></div>
+                        <div class="feedback-subtitle">Share your thoughts to help us improve</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feedback-content">
+                <div class="card">
+                    <h2>Your Feedback Matters</h2>
+                    <p class="feedback-description">
+                        Help us make MeetPoint better for everyone. Share your suggestions, report issues, 
+                        or tell us about new features you'd like to see. Your input directly influences our development priorities.
+                    </p>
+                    
+                    <form id="feedbackForm" class="form">
+                        <label>
+                            What would you like to share?
+                            <select id="feedbackType" required>
+                                <option value="" disabled selected>Select feedback type</option>
+                                <option value="suggestion">Feature Suggestion</option>
+                                <option value="improvement">Improvement Idea</option>
+                                <option value="bug">Bug Report</option>
+                                <option value="general">General Feedback</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </label>
+                        
+                        <label>
+                            Your feedback
+                            <textarea id="feedbackText" rows="6" placeholder="Tell us what you think... What's working well? What could be better? What new features would you like to see?" required></textarea>
+                        </label>
+                        
+                        <label>
+                            Priority (optional)
+                            <select id="feedbackPriority">
+                                <option value="low">Low - Nice to have</option>
+                                <option value="medium" selected>Medium - Would be helpful</option>
+                                <option value="high">High - Important for me</option>
+                                <option value="urgent">Urgent - Blocking my usage</option>
+                            </select>
+                        </label>
+                        
+                        <div class="row">
+                            <button type="submit" class="btn primary">Submit Feedback</button>
+                            <button type="button" class="btn" id="feedbackClearBtn">Clear</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="feedback-history card">
+                    <h3>Your Previous Feedback</h3>
+                    <div id="feedbackHistory" class="feedback-list">
+                        <div class="empty-hint">No feedback submitted yet. Be the first to help us improve!</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Section (Admin only) -->
+        <section id="view-admin" class="view hidden">
+            <div class="admin-header">
+                <h1>Admin Dashboard</h1>
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <h3 id="totalUsers">0</h3>
+                        <p>Total Users</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="totalPosts">0</h3>
+                        <p>Total Posts</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="totalFeedback">0</h3>
+                        <p>Total Feedback</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="unreadFeedback">0</h3>
+                        <p>Unread Feedback</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-tabs">
+                <button class="admin-tab active" data-tab="users">Users</button>
+                <button class="admin-tab" data-tab="feedback">Feedback</button>
+            </div>
+
+            <!-- Users Tab -->
+            <div id="admin-users" class="admin-tab-content active">
+                <div class="card">
+                    <h2>All Users</h2>
+                    <p class="admin-warning">⚠️ Deleting a user will permanently remove all their posts, feedback, and messages from the system.</p>
+                    <div id="usersList" class="users-list">
+                        <div class="empty-hint">Loading users...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feedback Tab -->
+            <div id="admin-feedback" class="admin-tab-content">
+                <div class="card">
+                    <h2>All Feedback</h2>
+                    <div id="adminFeedbackList" class="feedback-list">
+                        <div class="empty-hint">Loading feedback...</div>
+                    </div>
+                </div>
+            </div>
+
         </section>
     </main>
 
