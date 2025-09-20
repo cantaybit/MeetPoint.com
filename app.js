@@ -76,6 +76,7 @@
             setMessages([]);
             localStorage.setItem('mp_seeded', '1');
         }
+        
     })();
 
     function updateNav() {
@@ -140,7 +141,7 @@
         }
         
         const users = getUsers();
-        const user = users.find(u => u.username.toLowerCase() === username.toLowerCase());
+        const user = users.find(u => u.username === username);
         if (!user || user.password !== password) {
             alert('Invalid username or password');
             return;
@@ -163,8 +164,8 @@
         const password2 = document.getElementById('regPassword2').value;
         if (password !== password2) { alert('Passwords do not match'); return; }
         const users = getUsers();
-        if (users.some(u => u.username.toLowerCase() === username.toLowerCase())) { alert('Username already taken'); return; }
-        if (users.some(u => u.email.toLowerCase() === email.toLowerCase())) { alert('Email already registered'); return; }
+        if (users.some(u => u.username === username)) { alert('Username already taken'); return; }
+        if (users.some(u => u.email === email)) { alert('Email already registered'); return; }
         users.push({ username, password, fullName, email, avatarDataUrl: null });
         setUsers(users);
         alert('Registration successful. Please login.');
@@ -181,7 +182,7 @@
         const username = document.getElementById('fpUsername').value.trim();
         const email = document.getElementById('fpEmail').value.trim();
         const users = getUsers();
-        const i = users.findIndex(u => u.username.toLowerCase() === username.toLowerCase() && u.email.toLowerCase() === email.toLowerCase());
+        const i = users.findIndex(u => u.username === username && u.email === email);
         if (i === -1) { alert('No matching user found'); return; }
         const newPwd = generatePassword();
         users[i].password = newPwd;
